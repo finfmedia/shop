@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>대한민국을 위한 이야기 FINF | 추천 상품 모음</title>
+<meta name="description" content="대한민국을 위한 이야기 FINF 추천 상품 링크 모음">
+<meta property="og:type" content="website">
+<meta property="og:title" content="대한민국을 위한 이야기 FINF | 추천 상품 모음">
+<meta property="og:description" content="대한민국을 위한 이야기 FINF 추천 상품 링크 모음">
+<meta property="og:image" content="avatar.png">
+<meta name="twitter:card" content="summary">
+<style>
+  :root { --bg:#f6f7f9; --card:#fff; --text:#1a1d21; --sub:#6b7280; --accent:#e4002b; --line:#e5e7eb; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;
+         background:var(--bg); color:var(--text); line-height:1.5; }
+  .wrap { max-width:480px; margin:0 auto; padding:40px 16px 32px; }
+  header { text-align:center; margin-bottom:20px; }
+  .avatar { width:96px; height:96px; border-radius:50%; object-fit:cover; background:var(--line);
+            display:block; margin:0 auto 12px; }
+  h1 { font-size:22px; font-weight:700; }
+  .bio { font-size:14px; color:var(--sub); margin-top:4px; }
+  .notice { font-size:clamp(8px,2.4vw,11px); white-space:nowrap; color:var(--sub); text-align:center;
+            background:#eef0f3; border-radius:8px; padding:8px 6px; margin:16px 0; }
+  .one { font-size:clamp(8px,2.4vw,11px); white-space:nowrap; }
+  .list { display:flex; flex-direction:column; gap:14px; }
+  .item { display:block; background:var(--card); border:1px solid var(--line); border-radius:16px;
+          overflow:hidden; text-decoration:none; color:inherit; transition:transform .1s, box-shadow .1s; }
+  .item:active { transform:scale(.98); }
+  .item:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+  .thumb { display:block; width:100%; aspect-ratio:1/1; object-fit:cover; background:var(--bg); }
+  .noimg { display:flex; align-items:center; justify-content:center; width:100%; aspect-ratio:2/1;
+           background:var(--bg); font-size:40px; }
+  .body { padding:12px 14px 14px; display:flex; align-items:center; gap:10px; }
+  .info { flex:1; min-width:0; }
+  .name { font-size:15px; font-weight:600; word-break:keep-all; }
+  .desc { font-size:12px; color:var(--sub); margin-top:2px; }
+  .go { flex:none; font-size:13px; font-weight:700; color:#fff; background:var(--accent);
+        border-radius:999px; padding:8px 14px; }
+  footer { text-align:center; font-size:12px; color:var(--sub); margin-top:28px; }
+  footer p + p { margin-top:6px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img class="avatar" src="avatar.png" alt="" onerror="this.style.visibility='hidden'">
+    <h1>대한민국을 위한 이야기 FINF</h1>
+    <p class="bio">추천 상품 링크 모음</p>
+  </header>
+
+  <p class="notice">이 페이지는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
+
+  <main class="list" id="list"></main>
+
+  <footer>
+    <p class="one">이 페이지는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
+    <p>ⓒ 대한민국을 위한 이야기 FINF</p>
+  </footer>
+</div>
+
+<!-- 상품 목록은 products.js 에 들어 있습니다. admin.html 에서 편집하세요. -->
+<script src="products.js"></script>
+<script>
+  const list = document.getElementById("list");
+  (window.PRODUCTS || []).forEach(p => {
+    const a = document.createElement("a");
+    a.className = "item";
+    a.href = p.link;
+    a.target = "_blank";
+    a.rel = "noopener sponsored nofollow";
+
+    if (p.img) {
+      const im = document.createElement("img");
+      im.className = "thumb"; im.src = p.img; im.alt = p.name || ""; im.loading = "lazy";
+      a.appendChild(im);
+    } else {
+      const d = document.createElement("div");
+      d.className = "noimg"; d.textContent = "🛒";
+      a.appendChild(d);
+    }
+
+    const body = document.createElement("div"); body.className = "body";
+    const info = document.createElement("div"); info.className = "info";
+    const n = document.createElement("div"); n.className = "name"; n.textContent = p.name || "";
+    info.appendChild(n);
+    if (p.desc) {
+      const ds = document.createElement("div"); ds.className = "desc"; ds.textContent = p.desc;
+      info.appendChild(ds);
+    }
+    const go = document.createElement("span"); go.className = "go"; go.textContent = "구매하기";
+    body.appendChild(info); body.appendChild(go);
+    a.appendChild(body);
+    list.appendChild(a);
+  });
+</script>
+</body>
+</html>
